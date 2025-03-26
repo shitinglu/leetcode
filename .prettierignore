@@ -1,0 +1,15 @@
+# 依赖目录
+node_modules
+coverage
+
+# 构建输出
+dist
+build
+
+# 其他
+.git
+.DS_Store
+*.log
+pnpm-lock.yaml
+package-lock.json
+yarn.lock 

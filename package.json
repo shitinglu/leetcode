@@ -1,0 +1,59 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "LeetCode刷题项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "solve": "ts-node",
+    "new": "node scripts/create-problem.js",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --ext .js,.ts --fix",
+    "format": "prettier --write \"**/*.{js,ts,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,json,md}\"",
+    "prepare": "pnpm lint:fix && pnpm format",
+    "precommit": "lint-staged",
+    "watch:format": "onchange \"src/**/*.{ts,js}\" \"tests/**/*.{ts,js}\" -- prettier --write {{changed}}",
+    "dev:format": "pnpm run dev & pnpm run watch:format",
+    "watch:lint": "onchange \"src/**/*.{ts,js}\" \"tests/**/*.{ts,js}\" -- eslint --fix {{changed}}",
+    "dev:all": "pnpm run dev & pnpm run watch:format & pnpm run watch:lint"
+  },
+  "keywords": [
+    "leetcode",
+    "algorithm",
+    "data-structure"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@types/jest": "29.5.14",
+    "@types/node": "^22.13.10",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.5",
+    "husky": "^9.1.7",
+    "jest": "29.7.0",
+    "lint-staged": "^15.5.0",
+    "nodemon": "3.1.9",
+    "onchange": "^7.1.0",
+    "prettier": "^3.5.3",
+    "ts-jest": "29.2.6",
+    "ts-node": "^10.9.2",
+    "typescript": "5.8.2"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}
