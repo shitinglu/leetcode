@@ -1,0 +1,92 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# LeetCode网址解析规则
+
+这个规则用于从LeetCode网址提取题目内容并生成文件头部注释。
+
+## 规则内容
+
+当用户输入LeetCode题目URL时，执行以下操作：
+1. 从URL中提取题目编号和标题
+2. 注释顶部给出原题的链接
+3. 访问LeetCode网站获取题目详情
+4. 提取以下内容：
+   - 题目标题和编号
+   - 题目描述
+   - 示例输入/输出
+   - 约束条件
+5. 将内容格式化为文件顶部注释格式
+6. 生成对应的函数签名
+7. 要求不要解题，只需要输出跑用例的代码就行
+
+## 输出格式和示例
+
+```typescript
+/**
+ * [题号]. [题目标题]
+ *
+ * [题目描述]
+ * 
+ * 示例：
+ * 输入：[示例输入]
+ * 输出：[示例输出]
+ * 解释：[解释说明]
+ *
+ * 提示：
+ * - [约束条件1]
+ * - [约束条件2]
+ */
+
+// 导出函数 示例
+export default {
+  run: () => {
+    const examples = [
+      {
+        input: [5, 10, -5],
+        output: [5, 10],
+      },
+      {
+        input: [8, -8],
+        output: [],
+      },
+      {
+        input: [10, 2, -5],
+        output: [10],
+      },
+      {
+        input: [-2, -1, 1, 2],
+        output: [-2, -1, 1, 2],
+      },
+      {
+        input: [-2, -2, 1, -2],
+        output: [-2, -2, -2],
+      },
+    ];
+
+    for (const example of examples) {
+      const result = asteroidCollision(example.input);
+      console.log(`输入: asteroids = [${example.input}], 输出: [${result}]`);
+      console.log(
+        `测试结果: ${JSON.stringify(result) === JSON.stringify(example.output) ? '通过' : '失败'}`
+      );
+    }
+  },
+};
+```
+
+
+## 温度配置
+
+- 温度值: 0.7
+  - 较低温度（0.2-0.5）：生成更确定性、更保守的解题思路
+  - 中等温度（0.6-0.8）：平衡创新性和准确性
+  - 较高温度（0.9-1.0）：提供更多样化、创新的解题思路
+
+## 使用说明
+
+在聊天窗口中使用 `@cursor rules leetcode-comment` 调用此规则。
+使用 `@cursor rules leetcode-comment temp=0.3` 调用低温度版本（更准确）。
+使用 `@cursor rules leetcode-comment temp=0.9` 调用高温度版本（更创新）。
