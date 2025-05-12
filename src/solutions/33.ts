@@ -55,7 +55,7 @@
  */
 
 // 二叉树节点定义
-class TreeNode {
+export class TreeNode {
   val: number;
   left: TreeNode | null;
   right: TreeNode | null;
