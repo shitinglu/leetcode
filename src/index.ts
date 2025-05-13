@@ -21,4 +21,4 @@ export function run(problemNumber: number): void {
   }
 }
 
-run(39);
+run(40);
