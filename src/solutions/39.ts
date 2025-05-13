@@ -23,7 +23,64 @@
  * - -10^5 <= Node.val <= 10^5
  */
 
-// Definition for a binary tree node.
+/**
+ * 1161. 二叉树的最大层内元素和
+ * 题目链接 https://leetcode.cn/problems/maximum-level-sum-of-a-binary-tree/
+ *
+ * 解题思路：
+ * 1. 问题本质
+ * - 需要找出二叉树中哪一层的节点值之和最大
+ * - 如果多层具有相同的最大和，返回层号最小的那一层
+ * - 层号从1开始计数（根节点为第1层）
+ *
+ * 2. 解决方案
+ * A. 广度优先搜索(BFS)
+ * - 使用队列按层遍历二叉树的所有节点
+ * - 记录每一层的节点值之和
+ * - 跟踪最大和及其对应的层号
+ *
+ * B. 深度优先搜索(DFS)
+ * - 使用哈希表或数组记录每一层的节点值之和
+ * - 递归遍历整棵树，将节点值添加到对应层的和中
+ * - 找出具有最大和的层
+ *
+ * 3. 具体执行流程(以BFS为例)：
+ * 以示例 [1,7,0,7,-8,null,null] 为例：
+ * - 初始化：maxLevel=1, maxTotal=-Infinity, queue=[root(1)]
+ * - 第1层：
+ *   - 当前层节点：[1]
+ *   - 当前层之和：1
+ *   - 更新maxTotal=1, maxLevel=1
+ *   - 队列更新为：[7,0]
+ * - 第2层：
+ *   - 当前层节点：[7,0]
+ *   - 当前层之和：7+0=7
+ *   - 更新maxTotal=7, maxLevel=2
+ *   - 队列更新为：[7,-8]
+ * - 第3层：
+ *   - 当前层节点：[7,-8]
+ *   - 当前层之和：7+(-8)=-1
+ *   - maxTotal仍为7，maxLevel仍为2
+ *   - 队列为空，结束遍历
+ * - 返回maxLevel=2
+ *
+ * 4. 关键点
+ * - 使用队列实现逐层遍历是BFS的标准做法
+ * - 需要记录当前处理的层号(level)
+ * - 初始化maxTotal为负无穷大，因为节点值可能为负
+ * - 使用当前层的长度(levelSize)来确保一次处理完整一层
+ * - 如果有多层和相等，保留较小的层号
+ *
+ * 5. 复杂度分析
+ * - 时间复杂度：O(n)，其中n是树中的节点数量，每个节点只访问一次
+ * - 空间复杂度：O(w)，其中w是树的最大宽度，即队列中存储的最大节点数量
+ *
+ * 6. 方法选择
+ * - BFS在这个问题中更直观，因为我们需要按层处理节点
+ * - DFS也可以解决，但需要额外的数据结构记录每层的和
+ * - BFS的实现更简洁，不需要递归，逻辑更清晰
+ */
+
 export class TreeNode {
   val: number;
   left: TreeNode | null;
@@ -36,8 +93,32 @@ export class TreeNode {
 }
 
 export function maxLevelSum(root: TreeNode | null): number {
-  // TODO: 实现解题函数
-  return 0;
+  if (!root) return 0;
+  let maxLevel = 1;
+  let level = 0;
+  let maxTotal = -Infinity;
+
+  const queue: TreeNode[] = [root];
+
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    level++;
+    let total = 0;
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift()!;
+
+      total += node.val;
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    if (total > maxTotal) {
+      maxLevel = level;
+      maxTotal = total;
+    }
+  }
+  return maxLevel;
 }
 
 export default {
