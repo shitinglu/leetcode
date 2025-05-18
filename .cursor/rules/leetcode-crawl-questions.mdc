@@ -21,6 +21,7 @@ alwaysApply: true
 5. 将内容格式化为文件顶部注释格式
 6. 生成对应的函数签名
 7. 要求不要解题，只需要输出跑用例的代码就行，需要输出的用例得告诉我是否是正确的
+8. 再次强调不要解题
 
 ## 输出格式和示例
 
@@ -87,6 +88,9 @@ export default {
 
 ## 使用说明
 
-在聊天窗口中使用 `@cursor rules leetcode-comment` 调用此规则。
-使用 `@cursor rules leetcode-comment temp=0.3` 调用低温度版本（更准确）。
-使用 `@cursor rules leetcode-comment temp=0.9` 调用高温度版本（更创新）。
+在聊天窗口中使用 `@cursor rules leetcode-crawl-questions` 调用此规则。
+使用 `@cursor rules leetcode-crawl-questions temp=0.3` 调用低温度版本（更准确）。
+使用 `@cursor rules leetcode-crawl-questions temp=0.9` 调用高温度版本（更创新）。
+
+
+
