@@ -21,4 +21,5 @@ export function run(problemNumber: number): void {
   }
 }
 
-run(54);
+// 跑的题目路径
+run(62);
