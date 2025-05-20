@@ -89,9 +89,8 @@ export function findCircleNum(isConnected: number[][]): number {
   // DFS函数，访问城市i以及所有与之相连的城市
   const dfs = (i: number) => {
     visited[i] = true;
-    console.log(visited);
+
     for (let j = 0; j < n; j++) {
-      console.log(j, i, visited[j]);
       if (isConnected[i][j] === 1 && !visited[j]) {
         dfs(j);
       }
@@ -121,14 +120,14 @@ export default {
         ],
         output: 2,
       },
-      // {
-      //   input: [
-      //     [1, 0, 0],
-      //     [0, 1, 0],
-      //     [0, 0, 1],
-      //   ],
-      //   output: 3,
-      // },
+      {
+        input: [
+          [1, 0, 0],
+          [0, 1, 0],
+          [0, 0, 1],
+        ],
+        output: 3,
+      },
     ];
 
     for (const example of examples) {
