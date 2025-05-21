@@ -94,7 +94,6 @@ export function eraseOverlapIntervals(intervals: number[][]): number {
     }
   }
 
-  // 暂未实现
   return result;
 }
 

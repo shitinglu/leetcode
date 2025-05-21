@@ -22,4 +22,4 @@ export function run(problemNumber: number): void {
 }
 
 // 跑的题目路径
-run(66);
+run(71);
